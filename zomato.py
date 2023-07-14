@@ -71,7 +71,8 @@ def update_dish_availability(menu):
 
 def take_order(menu, orders):
     customer_name = input("Enter Customer Name: ")
-    order = {'customer': customer_name, 'dishes': [], 'status': 'received'}
+    order_id = generate_order_id(orders)
+    order = {'order_id': order_id, 'customer': customer_name, 'dishes': [], 'status': 'received'}
     dish_ids = input("Enter Dish IDs (comma-separated): ").split(',')
     total_bill = 0
     for dish_id in dish_ids:
@@ -83,7 +84,7 @@ def take_order(menu, orders):
             return
     order['total_bill'] = total_bill
     orders.append(order)
-    print("Order added successfully. Total bill:", total_bill)
+    print("Order added successfully. Order ID:", order_id)
 
 
 def update_order_status(orders):
